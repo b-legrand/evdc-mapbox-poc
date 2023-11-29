@@ -23,7 +23,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/evdc-mapbox-tests",
+            "outputPath": "dist/evdc-mapbox-tests/browser",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": [
@@ -101,6 +101,60 @@
             ],
             "scripts": []
           }
+        },
+        "server": {
+          "builder": "@angular-devkit/build-angular:server",
+          "options": {
+            "outputPath": "dist/evdc-mapbox-tests/server",
+            "main": "server.ts",
+            "tsConfig": "tsconfig.server.json"
+          },
+          "configurations": {
+            "production": {
+              "outputHashing": "media"
+            },
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "sourceMap": true,
+              "extractLicenses": false,
+              "vendorChunk": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve-ssr": {
+          "builder": "@angular-devkit/build-angular:ssr-dev-server",
+          "configurations": {
+            "development": {
+              "browserTarget": "evdc-mapbox-tests:build:development",
+              "serverTarget": "evdc-mapbox-tests:server:development"
+            },
+            "production": {
+              "browserTarget": "evdc-mapbox-tests:build:production",
+              "serverTarget": "evdc-mapbox-tests:server:production"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "prerender": {
+          "builder": "@angular-devkit/build-angular:prerender",
+          "options": {
+            "routes": [
+              "/"
+            ]
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "evdc-mapbox-tests:build:production",
+              "serverTarget": "evdc-mapbox-tests:server:production"
+            },
+            "development": {
+              "browserTarget": "evdc-mapbox-tests:build:development",
+              "serverTarget": "evdc-mapbox-tests:server:development"
+            }
+          },
+          "defaultConfiguration": "production"
         }
       }
     }
