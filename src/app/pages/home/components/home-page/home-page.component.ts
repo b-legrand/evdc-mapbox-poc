@@ -5,12 +5,20 @@ import { CommonModule } from '@angular/common';
   selector: 'app-home-page',
   standalone: true,
   imports: [CommonModule],
-  template: ` <p>home-page works!</p> `,
+  template: `
+    <h2>Bienvenue</h2>
+    <p>home-page works!</p>
+  `,
   styles: `
     :host {
-      display: block;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      flex: 1 1 auto;
     }
   `,
+  host: { class: 'page' },
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HomePageComponent {}

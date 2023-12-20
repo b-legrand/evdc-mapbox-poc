@@ -8,9 +8,14 @@ import { CommonModule } from '@angular/common';
   template: ` <p>not-found-page works!</p> `,
   styles: `
     :host {
-      display: block;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      flex: 1 1 auto;
     }
   `,
+  host: { class: 'page' },
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NotFoundPageComponent {}

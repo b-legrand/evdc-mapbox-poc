@@ -8,9 +8,13 @@ import { CommonModule } from '@angular/common';
   template: ` <p>station-page works!</p> `,
   styles: `
     :host {
-      display: block;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex: 1 1 auto;
     }
   `,
+  host: { class: 'page' },
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class StationPageComponent {}
