@@ -1,0 +1,38 @@
+name: Staging Deployment
+
+on:
+  pull_request:
+    branches: [main]
+
+env:
+  NODE_VERSION: 20
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    environment: staging-${{ github.sha }}
+    steps:
+      - uses: actions/checkout@v3
+      - uses: pnpm/action-setup@v2
+        with:
+          version: 8
+      - name: Use Node.js ${{ env.NODE_VERSION }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: "pnpm"
+      - name: Install dependencies
+        run: pnpm install
+      - name: Set short git commit SHA
+        id: vars
+        run: |
+          calculatedSha=$(git rev-parse --short ${{ github.sha }})
+          echo "COMMIT_SHORT_SHA=$calculatedSha" >> $GITHUB_ENV
+      - name: Build for staging deployment
+        run: pnpm run build --base-href=/evdc-mapbox-poc/${{ env.COMMIT_SHORT_SHA }}/
+      - name: Deploy to staging with gh-pages
+        run: |
+          git remote set-url origin https://git:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git
+          pnpx gh-pages -d dist/evdc-mapbox-tests/browser -u "github-actions-bot <support+actions@github.com>" -a true -m "Deploy ${{ env.COMMIT_SHORT_SHA }} from ${{ github.head_ref }} to GitHub pages" --dest ${{ env.COMMIT_SHORT_SHA }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
