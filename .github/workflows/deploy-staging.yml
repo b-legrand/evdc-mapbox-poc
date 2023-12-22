@@ -10,7 +10,9 @@ env:
 jobs:
   build:
     runs-on: ubuntu-latest
-    environment: staging-${{ github.sha }}
+    environment:
+      name: staging-${{ github.head_ref }}
+      url: https://b-legrand.github.io/evdc-mapbox-poc/${{ github.head_ref }}
     steps:
       - uses: actions/checkout@v3
       - uses: pnpm/action-setup@v2
@@ -29,10 +31,10 @@ jobs:
           calculatedSha=$(git rev-parse --short ${{ github.sha }})
           echo "COMMIT_SHORT_SHA=$calculatedSha" >> $GITHUB_ENV
       - name: Build for staging deployment
-        run: pnpm run build --base-href=/evdc-mapbox-poc/${{ env.COMMIT_SHORT_SHA }}/
+        run: pnpm run build --base-href=/evdc-mapbox-poc/${{ github.head_ref }}/
       - name: Deploy to staging with gh-pages
         run: |
           git remote set-url origin https://git:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git
-          pnpx gh-pages -d dist/evdc-mapbox-tests/browser -u "github-actions-bot <support+actions@github.com>" -a true -m "Deploy ${{ env.COMMIT_SHORT_SHA }} from ${{ github.head_ref }} to GitHub pages" --dest ${{ env.COMMIT_SHORT_SHA }}
+          pnpx gh-pages -d dist/evdc-mapbox-tests/browser -u "github-actions-bot <support+actions@github.com>" -a true -m "Deploy ${{ env.COMMIT_SHORT_SHA }} from ${{ github.head_ref }} to GitHub pages" --dest ${{ github.head_ref }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
