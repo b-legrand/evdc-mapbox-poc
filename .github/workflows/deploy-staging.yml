@@ -2,19 +2,22 @@ name: Staging Deployment
 
 on:
   pull_request:
+    types: [opened, synchronize, reopened, closed]
     branches: [main]
 
 env:
   NODE_VERSION: 20
 
 jobs:
-  build:
+  staging-deploy:
+    if: github.event_name == 'push' || (github.event_name == 'pull_request' && github.event.action != 'closed')
     runs-on: ubuntu-latest
     environment:
       name: staging-${{ github.head_ref }}
       url: https://b-legrand.github.io/evdc-mapbox-poc/${{ github.head_ref }}
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout
+        uses: actions/checkout@v3
       - uses: pnpm/action-setup@v2
         with:
           version: 8
@@ -36,5 +39,25 @@ jobs:
         run: |
           git remote set-url origin https://git:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git
           pnpx gh-pages -d dist/evdc-mapbox-tests/browser -u "github-actions-bot <support+actions@github.com>" -a true -m "Deploy ${{ env.COMMIT_SHORT_SHA }} from ${{ github.head_ref }} to GitHub pages" --dest ${{ github.head_ref }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  # Clean up staging environment on PR close
+  staging-deletion:
+    if: github.event_name == 'pull_request' && github.event.action == 'closed'
+    runs-on: ubuntu-latest
+    name: Close
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Delete staging environment
+        run: |
+          git remote set-url origin https://git:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git
+          git config user.name "github-actions-bot"
+          git config user.email "support+actions@github.com"
+          git checkout gh-pages
+          git rm -rf ${{ github.head_ref }}
+          git commit -m "Delete ${{ github.head_ref }} from GitHub pages"
+          git push origin gh-pages
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
