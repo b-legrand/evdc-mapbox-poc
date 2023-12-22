@@ -31,6 +31,6 @@ jobs:
       - name: Deploy to production with gh-pages
         run: |
           git remote set-url origin https://git:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git
-          pnpx gh-pages -d dist/evdc-mapbox-tests/browser -u "github-actions-bot <support+actions@github.com>" -m "Deploy production to GitHub pages" -f
+          pnpx gh-pages -d dist/evdc-mapbox-tests/browser -u "github-actions-bot <support+actions@github.com>" -m "Deploy production to GitHub pages" -a
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
