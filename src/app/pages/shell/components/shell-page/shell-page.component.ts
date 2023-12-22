@@ -8,7 +8,7 @@ import { RouterOutlet } from '@angular/router';
   template: `
     <header>
       <img
-        src="/assets/logo.png"
+        src="assets/logo.png"
         height="64"
         width="64"
         role="presentation"
