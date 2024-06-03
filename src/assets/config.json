@@ -1,0 +1,25 @@
+{
+  "$schema": "./config.schema.json",
+  "baseUrl": "http://localhost:5173/",
+  "env": {
+    "name": "development",
+    "api": "http://localhost:5173/api/",
+    "mapApiKey": "",
+    "authClientId": ""
+  },
+  "features": {
+    "login": true,
+    "register": true,
+    "forgotPassword": true,
+    "resetPassword": true,
+    "changePassword": true,
+    "changeEmail": true,
+    "changeUsername": true,
+    "deleteAccount": true,
+    "logout": true,
+    "viewMap": true,
+    "viewProfile": true,
+    "viewStationDetails": true,
+    "search": true
+  }
+}

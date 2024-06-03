@@ -2,6 +2,10 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.4.
 
+It is a proof of concept for a simple site with a home, a map with mapbox, and a detail page for recharge spots. 
+
+Data is from the Electric Vehicle Recharge Spots dataset from [data.gouv.fr](https://www.data.gouv.fr/fr/datasets/fichier-consolide-des-bornes-de-recharge-pour-vehicules-electriques/)
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
@@ -16,7 +20,7 @@ Run `ng build` to build the project. The build artifacts will be stored in the `
 
 ## Running unit tests
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+Run `ng test` to execute the unit tests via [Vitest](https://vitest.dev/).
 
 ## Running end-to-end tests
 

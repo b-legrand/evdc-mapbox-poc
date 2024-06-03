@@ -1,0 +1,42 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "http://localhost:4200/config.schema.json",
+  "type": "object",
+  "title": "Configuration Schema",
+  "description": "The root schema comprises the entire JSON document.",
+  "properties": {
+    "$schema": { "type": "string" },
+    "baseUrl": { "type": "string" },
+    "env": {
+      "type": "object",
+      "description": "Environment informations object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "the name of the environment (staging, preview-commitHash, production)"
+        },
+        "version": {
+          "type": "string",
+          "description": "Application version, should be either the current commit hash, either a git tag"
+        },
+        "mapApiKey": {
+          "type": "string",
+          "description": "Key for the map provider"
+        },
+        "authClientId": {
+          "type": "string",
+          "description": "Authentication client id for OIDC authentication"
+        }
+      }
+    },
+    "features": {
+      "type": "object",
+      "description": "map of enabled features for this environment",
+      "properties": {
+        "type": { "enum": ["login", "mapView"] }
+      }
+    }
+  },
+  "additionalProperties": false,
+  "required": ["baseUrl", "env", "$schema"]
+}

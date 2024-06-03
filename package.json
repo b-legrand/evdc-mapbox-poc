@@ -8,7 +8,9 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "test:coverage": "ng test --coverage",
-    "serve:ssr:evdc-mapbox-tests": "node dist/evdc-mapbox-tests/server/server.mjs"
+    "serve:ssr:evdc-mapbox-tests": "node dist/evdc-mapbox-tests/server/server.mjs",
+    "prebuild": "json2ts -i src/assets/config.schema.json -o src/app/model/config.d.ts",
+    "generate-config": "ts-node ./tools/config-generator"
   },
   "private": true,
   "dependencies": {
@@ -33,9 +35,11 @@
     "@angular/compiler-cli": "^21.0.5",
     "@standard-schema/spec": "^1.0.0",
     "@types/express": "^4.17.17",
+    "@types/geojson": "^7946.0.13",
     "@types/node": "^24.0.0",
     "@vitest/coverage-v8": "^4.0.16",
     "browser-sync": "^3.0.0",
+    "dotenv": "^16.3.1",
     "jsdom": "^27.3.0",
     "typescript": "~5.9.3",
     "vite": "^7.3.0",

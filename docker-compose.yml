@@ -1,0 +1,11 @@
+services:
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "3000:4000"
+  backend:
+    image: couchdb:latest
+    ports:
+      - "5984:5984"

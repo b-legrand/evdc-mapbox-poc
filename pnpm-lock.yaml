@@ -66,6 +66,9 @@ importers:
       '@types/express':
         specifier: ^4.17.17
         version: 4.17.21
+      '@types/geojson':
+        specifier: ^7946.0.13
+        version: 7946.0.16
       '@types/node':
         specifier: ^24.0.0
         version: 24.10.4
@@ -75,6 +78,9 @@ importers:
       browser-sync:
         specifier: ^3.0.0
         version: 3.0.2
+      dotenv:
+        specifier: ^16.3.1
+        version: 16.6.1
       jsdom:
         specifier: ^27.3.0
         version: 27.3.0
@@ -1699,6 +1705,9 @@ packages:
   '@types/express@4.17.21':
     resolution: {integrity: sha512-ejlPM315qwLpaQlQDTjPdsUFSc6ZsP4AN6AlWnogPjQ7CVi7PYF3YVz+CY3jE2pwYf7E/7HlDAN0rV2GxTG0HQ==}
 
+  '@types/geojson@7946.0.16':
+    resolution: {integrity: sha512-6C8nqWur3j98U6+lXDfTUWIfgvZU+EumvpHKcYjujKH7woYyLj2sUmff0tRhrqM7BohUw7Pz3ZB1jj2gW9Fvmg==}
+
   '@types/http-errors@2.0.4':
     resolution: {integrity: sha512-D0CFMMtydbJAegzOyHjtiKPLlvnm3iTZyZRSZoLq2mRhDdmLfIWOCYPfQJ4cu2erKghU++QvjcUjp/5h7hESpA==}
 
@@ -2183,6 +2192,10 @@ packages:
 
   domutils@3.2.2:
     resolution: {integrity: sha512-6kZKyUajlDuqlHKVX1w7gyslj9MPIXzIFiz/rGu35uC1wMi+kMhQwGhl4lt9unC9Vb9INnY9Z3/ZA3+FhASLaw==}
+
+  dotenv@16.6.1:
+    resolution: {integrity: sha512-uBq4egWHTcTt33a72vpSG0z3HnPuIl6NqYcTrKEg2azoEyl2hpW0zqlxysq2pK9HlDIHyHyakeYaYnSAwd8bow==}
+    engines: {node: '>=12'}
 
   dunder-proto@1.0.1:
     resolution: {integrity: sha512-KIN/nDJBQRcXw0MLVhZE9iQHmG68qAVIBg9CqmUYjmQIhgij9U5MFvrqkUL5FbtyyzZuOeOt0zdeRe4UY7ct+A==}
@@ -5330,6 +5343,8 @@ snapshots:
       '@types/qs': 6.9.10
       '@types/serve-static': 1.15.5
 
+  '@types/geojson@7946.0.16': {}
+
   '@types/http-errors@2.0.4': {}
 
   '@types/mime@1.3.5': {}
@@ -5907,6 +5922,8 @@ snapshots:
       dom-serializer: 2.0.0
       domelementtype: 2.3.0
       domhandler: 5.0.3
+
+  dotenv@16.6.1: {}
 
   dunder-proto@1.0.1:
     dependencies:

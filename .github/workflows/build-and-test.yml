@@ -2,9 +2,13 @@ name: Build and Test
 
 on:
   pull_request:
-    branches: [ main ]
+    branches:
+      - main
+      - 'releases/**'
   push:
-    branches: [ main ]
+    branches:
+      - main
+      - 'releases/**'
 
 env:
   NODE_VERSION: 24
