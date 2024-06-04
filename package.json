@@ -8,10 +8,7 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "test:coverage": "vitest --coverage true",
-    "dev:ssr": "ng run evdc-mapbox-tests:serve-ssr",
-    "serve:ssr": "node dist/evdc-mapbox-tests/server/main.js",
-    "build:ssr": "ng build && ng run evdc-mapbox-tests:server",
-    "prerender": "ng run evdc-mapbox-tests:prerender"
+    "serve:ssr:evdc-mapbox-tests": "node dist/evdc-mapbox-tests/server/server.mjs"
   },
   "private": true,
   "dependencies": {
