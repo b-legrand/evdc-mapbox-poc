@@ -4,8 +4,8 @@ import { TranslocoService } from '@jsverse/transloco';
 
 export const supportedLangGuard: CanMatchFn = (_route, segments) => {
   const lang = segments[0].path;
-  const supportedLand = ['fr', 'en', 'de', 'it', 'es', 'nl'].includes(lang);
-  if (!supportedLand) {
+  const supportedLang = ['fr', 'en', 'de', 'it', 'es', 'nl'].includes(lang);
+  if (!supportedLang) {
     return false;
   }
   const transloco = inject(TranslocoService);
