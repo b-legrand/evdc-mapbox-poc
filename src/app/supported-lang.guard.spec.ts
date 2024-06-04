@@ -1,5 +1,5 @@
 import { TestBed } from '@angular/core/testing';
-import { ActivatedRouteSnapshot, CanMatchFn, Route, UrlSegment } from '@angular/router';
+import { CanMatchFn, Route, UrlSegment } from '@angular/router';
 import { describe, it, expect, beforeEach } from 'vitest';
 
 import { supportedLangGuard } from './supported-lang.guard';

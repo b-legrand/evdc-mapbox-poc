@@ -6,6 +6,8 @@ import { provideClientHydration } from '@angular/platform-browser';
 import { provideHttpClient, withFetch } from '@angular/common/http';
 import { TranslocoHttpLoader } from './transloco-loader';
 import { provideTransloco } from '@jsverse/transloco';
+import { ASSETS } from './core/assets/assets-fetcher.token';
+import { AssetsFetcherBrowserService } from './core/assets/assets-fetcher.browser.service';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -19,8 +21,10 @@ export const appConfig: ApplicationConfig = {
         // Remove this option if your application doesn't support changing language in runtime.
         reRenderOnLangChange: true,
         prodMode: !isDevMode(),
+        
       },
       loader: TranslocoHttpLoader,
     }),
+    { provide: ASSETS, useClass: AssetsFetcherBrowserService },
   ],
 };
