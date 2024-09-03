@@ -1,10 +1,11 @@
 import { TestBed } from '@angular/core/testing';
-import { CanActivateFn } from '@angular/router';
+import { CanMatchFn } from '@angular/router';
+import { describe, it, expect, beforeEach } from 'vitest';
 
 import { supportedLangGuard } from './supported-lang.guard';
 
 describe('supportedLangGuard', () => {
-  const executeGuard: CanActivateFn = (...guardParameters) =>
+  const executeGuard: CanMatchFn = (...guardParameters) =>
     TestBed.runInInjectionContext(() => supportedLangGuard(...guardParameters));
 
   beforeEach(() => {

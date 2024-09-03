@@ -89,7 +89,7 @@
           }
         },
         "test": {
-          "builder": "@analogjs/platform:vitest"
+          "builder": "@analogjs/vitest-angular:test"
         },
         "server": {
           "builder": "@angular-devkit/build-angular:server",
