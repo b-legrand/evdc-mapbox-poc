@@ -36,13 +36,13 @@ import { RouterOutlet } from '@angular/router';
       position: fixed;
       width: 100%;
       height: 64px;
-      background-color: rgba(255,255,255,0.8);
-      box-shadow: 0 0 8px 0 rgba(0,0,0,0.2);
+      background-color: rgba(255, 255, 255, 0.8);
+      box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.2);
     }
     main {
       margin-top: 64px;
       flex: 1 1 auto;
-      display: flex,
+      display: flex;
     }
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
