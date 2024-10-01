@@ -1,7 +1,12 @@
 name: Install dependencies with pnpm
 
+# called by other workflows
 on:
-  push:
+  workflow_call:
+
+# define a concurrency group to prevent concurrent runs of the same workflow
+concurrency:
+  group: ci-${{ github.ref }}
 
 env:
   NODE_VERSION: 22

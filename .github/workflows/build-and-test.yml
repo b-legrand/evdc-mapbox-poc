@@ -9,9 +9,12 @@ on:
 env:
   NODE_VERSION: 22
 
-jobs:
+jobs: 
+  install:
+    uses: ./.github/workflows/install.yml
   build:
     runs-on: ubuntu-latest
+    needs: install
     steps:
     - uses: actions/checkout@v4
     - uses: pnpm/action-setup@v4
@@ -28,6 +31,7 @@ jobs:
       run: pnpm run build:ssr
   test:
     runs-on: ubuntu-latest
+    need: install
     steps:
     - uses: actions/checkout@v4
     - uses: pnpm/action-setup@v4
