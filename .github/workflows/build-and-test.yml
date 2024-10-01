@@ -7,18 +7,18 @@ on:
     branches: [ main ]
 
 env:
-  NODE_VERSION: 20
+  NODE_VERSION: 22
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
-    - uses: pnpm/action-setup@v2
+    - uses: actions/checkout@v4
+    - uses: pnpm/action-setup@v4
       with:
-        version: 8
+        version: 9
     - name: Use Node.js ${{ env.NODE_VERSION }}
-      uses: actions/setup-node@v3
+      uses: actions/setup-node@v4
       with:
         node-version: ${{ env.NODE_VERSION }}
         cache: 'pnpm'
@@ -26,15 +26,24 @@ jobs:
       run: pnpm install
     - name: Build
       run: pnpm run build:ssr
+  test:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - uses: pnpm/action-setup@v4
+      with:
+        version: 9
+    - name: Use Node.js ${{ env.NODE_VERSION }}
+      uses: actions/setup-node@v4
+      with:
+        node-version: ${{ env.NODE_VERSION }}
+        cache: 'pnpm'
+    - name: Install dependencies
+      run: pnpm install
     - name: 'Test'
-      run: pnpx vitest --coverage true
+      run: pnpm run test:coverage
     - name: 'Report Coverage'
       # Set if: always() to also generate the report if tests are failing
       # Only works if you set `reportOnFailure: true` in your vite config as specified above
       if: always()
-      uses:  davelosert/vitest-coverage-report-action@v2
-    - name: Save artifact
-      uses: actions/upload-artifact@v2
-      with:
-        name: dist
-        path: dist
+      uses: davelosert/vitest-coverage-report-action@v2
