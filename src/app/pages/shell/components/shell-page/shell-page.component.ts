@@ -27,6 +27,8 @@ import { RouterOutlet } from '@angular/router';
       display: flex;
       flex-direction: column;
       height: 100vh;
+      width: 100%;
+      justify-content: flex-start;
     }
     header {
       display: flex;
@@ -43,6 +45,7 @@ import { RouterOutlet } from '@angular/router';
       margin-top: 64px;
       flex: 1 1 auto;
       display: flex;
+      flex-direction: column;
     }
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,

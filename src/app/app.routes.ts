@@ -1,6 +1,5 @@
 import { Routes } from '@angular/router';
 import { supportedLangGuard } from './supported-lang.guard';
-import { AppComponent } from './app.component';
 import { ShellPageComponent } from './pages/shell/components/shell-page/shell-page.component';
 
 export const routes: Routes = [

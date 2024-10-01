@@ -11,8 +11,8 @@ import { CommonModule } from '@angular/common';
     :host {
       display: flex;
       flex-direction: column;
-      align-items: center;
-      justify-content: center;
+      align-items: stretch;
+      justify-content: flex-start;
       flex: 1 1 auto;
     }
   `,
