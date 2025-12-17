@@ -87,14 +87,14 @@
           },
           "defaultConfiguration": "development"
         },
+        "test": {
+          "builder": "@angular/build:unit-test"
+        },
         "extract-i18n": {
           "builder": "@angular/build:extract-i18n",
           "options": {
             "buildTarget": "evdc-mapbox-tests:build"
           }
-        },
-        "test": {
-          "builder": "@analogjs/platform:vitest"
         }
       }
     }
