@@ -1,10 +1,9 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-map-page',
   standalone: true,
-  imports: [CommonModule],
+  imports: [],
   template: `<h2>Trouver une station</h2>
     <p>map-page works!</p> `,
   styles: `
