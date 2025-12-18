@@ -7,7 +7,7 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "test:coverage": "vitest --coverage true",
+    "test:coverage": "ng test --coverage",
     "serve:ssr:evdc-mapbox-tests": "node dist/evdc-mapbox-tests/server/server.mjs"
   },
   "private": true,
