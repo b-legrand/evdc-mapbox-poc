@@ -1,10 +1,9 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-station-page',
   standalone: true,
-  imports: [CommonModule],
+  imports: [],
   template: ` <p>station-page works!</p> `,
   styles: `
     :host {
