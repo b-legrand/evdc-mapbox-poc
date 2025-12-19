@@ -11,8 +11,31 @@ env:
   PNPM_VERSION: 10
 
 jobs:
+  install:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - uses: pnpm/action-setup@v4
+      with:
+        version: ${{ env.PNPM_VERSION }}
+    - name: Use Node.js ${{ env.NODE_VERSION }}
+      uses: actions/setup-node@v4
+      with:
+        node-version: ${{ env.NODE_VERSION }}
+        cache: 'pnpm'
+    - uses: actions/cache@v4
+      id: cache
+      with:
+        path: node_modules
+        key: ${{ runner.os }}-pnpm-${{ hashFiles('**/pnpm-lock.yaml') }}
+        lookup-only: true
+    - name: Install Dependencies
+      if: steps.cache.outputs.cache-hit != 'true'
+      run: pnpm install
+
   build:
     runs-on: ubuntu-latest
+    needs: [install]
     steps:
     - uses: actions/checkout@v4
     - uses: pnpm/action-setup@v4
@@ -27,13 +50,31 @@ jobs:
       run: pnpm install
     - name: Build
       run: pnpm run build
-  test:
+
+  lint:
     runs-on: ubuntu-latest
+    needs: [install]
     steps:
     - uses: actions/checkout@v4
     - uses: pnpm/action-setup@v4
       with:
-        version: 9
+        version: ${{ env.PNPM_VERSION }}
+    - name: Use Node.js ${{ env.NODE_VERSION }}
+      uses: actions/setup-node@v4
+      with:
+        node-version: ${{ env.NODE_VERSION }}
+        cache: 'pnpm'
+    - name: Lint
+      run: pnpm run lint
+
+  test:
+    runs-on: ubuntu-latest
+    needs: [install]
+    steps:
+    - uses: actions/checkout@v4
+    - uses: pnpm/action-setup@v4
+      with:
+        version: ${{ env.PNPM_VERSION }}
     - name: Use Node.js ${{ env.NODE_VERSION }}
       uses: actions/setup-node@v4
       with:
@@ -51,3 +92,9 @@ jobs:
       with:
         json-summary-path: coverage/evdc-mapbox-tests/coverage-summary.json
         json-final-path: coverage/evdc-mapbox-tests/coverage-final.json
+
+  aggregate:
+    runs-on: ubuntu-latest
+    needs: [test,lint,build]
+    steps:
+      - uses: actions/checkout@v4
